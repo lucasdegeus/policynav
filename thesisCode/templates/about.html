@@ -1,0 +1,356 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <title> Vertical Menu </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('.collapse').on('show.bs.collapse', function () {
+        $('.collapse.show').each(function () {
+          $(this).collapse('hide');
+        });
+      });
+    });
+  </script>
+    <script>
+      $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("#myList li").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+    </script>
+
+<script type=text/javascript>
+  $(function() {
+    $('li#calculate').bind('click', function() {
+        console.log($("#myInput").val());
+      $.getJSON(window.location.origin + '/_add_numbers', {
+        policy: $("#myInput").val(),
+        a: $('input[name="a"]').val(),
+        b: $('input[name="b"]').val()
+      }, function(data) {
+        document.getElementById('invisarea').innerHTML = data;
+      //   $("#invisarea").text(data.result);
+        document.getElementById("invisSubmit").submit();
+      });
+      return false;
+    });
+  });
+</script>
+</head>
+<body style="background-color: f4f2ef;">
+<style>
+  #hero {
+  width: 100%;
+  height: 70vh;
+  background: #fef8f5;
+  border-bottom: 2px solid #fcebe3;
+  margin: 72px 0 -72px 0;
+}
+
+#hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #4e4039;
+}
+
+#hero h2 {
+  color: #a08f86;
+  margin-bottom: 50px;
+  font-size: 24px;
+}
+
+#hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 3px;
+  transition: 0.5s;
+  margin: 10px;
+  color: #fff;
+  background: #eb5d1e;
+}
+
+#hero .btn-get-started:hover {
+  background: #ef7f4d;
+}
+
+#hero .animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 991px) {
+  #hero {
+    height: calc(100vh - 72px);
+  }
+  #hero .animated {
+    -webkit-animation: none;
+    animation: none;
+  }
+  #hero .hero-img {
+    text-align: center;
+  }
+  #hero .hero-img img {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+  #hero .hero-img img {
+    width: 70%;
+  }
+}
+
+@media (max-width: 575px) {
+  #hero .hero-img img {
+    width: 80%;
+  }
+}
+.nav-menu, .nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu > ul > li {
+  position: relative;
+  white-space: nowrap;
+  float: left;
+}
+
+.nav-menu a {
+  display: block;
+  position: relative;
+  color: #4e4039;
+  padding: 10px 15px;
+  transition: 0.3s;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
+  color: #eb5d1e;
+  text-decoration: none;
+}
+
+.nav-menu .get-started a {
+  background: #eb5d1e;
+  color: #fff;
+  border-radius: 50px;
+  margin: 0 15px;
+  padding: 10px 25px;
+}
+
+.nav-menu .get-started a:hover {
+  background: #ee7843;
+  color: #fff;
+}
+
+.nav-menu .drop-down ul {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: calc(100% - 30px);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  padding: 10px 0;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  transition: ease all 0.3s;
+}
+
+.nav-menu .drop-down:hover > ul {
+  opacity: 1;
+  top: 100%;
+  visibility: visible;
+}
+
+.nav-menu .drop-down li {
+  min-width: 180px;
+  position: relative;
+}
+
+.nav-menu .drop-down ul a {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  color: #3c1300;
+}
+
+.nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
+  color: #eb5d1e;
+}
+
+.nav-menu .drop-down > a:after {
+  content: "\ea99";
+  font-family: IcoFont;
+  padding-left: 5px;
+}
+
+.nav-menu .drop-down .drop-down ul {
+  top: 0;
+  left: calc(100% - 30px);
+}
+
+.nav-menu .drop-down .drop-down:hover > ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
+}
+
+.nav-menu .drop-down .drop-down > a {
+  padding-right: 35px;
+}
+
+.nav-menu .drop-down .drop-down > a:after {
+  content: "\eaa0";
+  font-family: IcoFont;
+  position: absolute;
+  right: 15px;
+}
+
+@media (max-width: 1366px) {
+  .nav-menu .drop-down .drop-down ul {
+    left: -90%;
+  }
+  .nav-menu .drop-down .drop-down:hover > ul {
+    left: -100%;
+  }
+  .nav-menu .drop-down .drop-down > a:after {
+    content: "\ea9d";
+  }
+}
+#header {
+  height: 72px;
+  transition: all 0.5s;
+  z-index: 997;
+  transition: all 0.5s;
+  padding: 15px 0;
+  background: #fff;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+#header .logo h1 {
+  font-size: 30px;
+  margin: 0;
+  padding: 6px 0;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+#header .logo h1 a, #header .logo h1 a:hover {
+  color: #7a6960;
+  text-decoration: none;
+}
+
+#header .logo img {
+  padding: 0;
+  margin: 0;
+  max-height: 40px;
+}
+</style>
+<script>
+  function home() {
+    window.open(window.location.origin, name="_self");
+  }
+  function about() {
+    window.open(window.location.origin+"/about", name="_self")
+  }
+  </script>
+<header class="fixed-top p-3" id="header">
+  <div class="container-fluid d-flex">
+    <div class="logo mr-auto">
+      <a onclick="home()" style="text-decoration: none;">
+      <h1 class="text-light" style="color:#7a6960 !important;">
+        PolicyNav
+      </h1>
+      </a>
+    </div>
+    <nav class="nav-menu d-none d-lg-block">
+      <ul>
+        <li class="get-started">
+          <a onclick="about()">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+<section class="d-flex align-items-center" id="hero" style="display: block !important; height: unset !important;">
+  <div class="container mt-6">
+    <h2>The internet has been one of the most growing technologies. The number of users increased from 413 million in 2000 to over 3.4 billion in 2016 <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank">[1]</a>. With the rise of social
+        media services and the increase in online services, people are spending more time
+        online than before. The dominant business model for the social media services on the
+        internet is targeted/personal advertising, which is built on user profiling <a href="https://www.sciencedirect.com/science/article/abs/pii/S0263237308000200" target="_blank">[2]</a>. Profiling
+        requires data collection and analysis about the personal data of those users.
+        <br><br>
+        The General Data Protection Regulation <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank">(GDPR)</a>
+        , introduced on May 25, 2018, requires all companies that provide services that handle personal data of users located in
+        the EU to inform these users about the way their data is processed. This information is
+        often presented in the form of a privacy policy or terms of service. Navigating through
+        the contents of privacy policies which are normally long and difficult to read can be
+        exhaustive. A study from Ober et al. suggest that an average adult would need 29-32
+        minutes to read a privacy policy for joining a social networking service <a href="https://www.tandfonline.com/doi/abs/10.1080/1369118X.2018.1486870" target="_blank">[3]</a>. The same
+        study concludes that reading all privacy policies you encounter in a year would take 76
+        work days to read. It is therefore not surprising that hardly anyone reads them.
+        Besides the length, most privacy policies lack readability which makes it hard to understand the content <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.109.5114
+        " target="_blank">[4]</a>. A survey from Deloitte with over 51000 respondents across
+        33 countries shows that 91% of the respondents is willing to accept legal terms and
+        conditions for mobile apps and service providers without reading them <a href="https://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/Global%20mobile%20consumer%20survey%20extended%20version.pdf" target="_blank">[5]</a>. Only 13%
+        of the respondents never share their personal information without reading the terms and
+        conditions.
+        <br><br>
+        This tool is designed to help users navigate through privacy policies faster and make it possible to read the most important information from policies.
+        <br><br>
+        <a href="https://github.com/lucasdegeus/policynav" target="_blank">GitHub</a>
+        
+
+    </h2>
+  </div>
+</section>
+
+<footer class="page-footer font-small blue" style="position: fixed !important; bottom:0 !important; width: 100% !important;">
+  <div class="row text-right">
+    <div class="col">
+      <a href="https://github.com/lucasdegeus/policynav" target="_blank">
+      <img src="{{url_for('static', filename='githublogo.png')}}" class="img-fluid animated" style="width: 75px;">
+      </a>
+
+    </div>
+  </div>
+
+</footer>
+</body>
+</html>
