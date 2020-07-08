@@ -242,7 +242,6 @@ def webScraper(url):
 def exists(var):
      var_exists = var in locals() or var in globals()
      return var_exists
-names=['lucas', 'pieter' , 'geit']
 
 
 app = Flask(__name__)
